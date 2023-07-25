@@ -207,6 +207,7 @@ fn row_sum_odd_numbers(n: i64) -> i64 {
         return counter
     }
 
+    
     let mut iterator = 0 ; 
 
     for i in 2..n{
