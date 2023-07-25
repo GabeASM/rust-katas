@@ -199,41 +199,38 @@ fn min_max(lst: &[i32]) -> (i32, i32) {
     (new_vec[0], final_last_number)
 }
 fn row_sum_odd_numbers(n: i64) -> i64 {
-    
-    let mut counter = 1; 
-    let mut result : i64 = 0; 
+    let mut counter = 1;
+    let mut result: i64 = 0;
 
     if n == 1 {
-        return counter
+        return counter;
     }
 
-    
-    let mut iterator = 0 ; 
+    let mut iterator = 0;
 
-    for i in 2..n{
-        while iterator < i{
+    for i in 2..n {
+        while iterator < i {
             counter = counter + 2;
-            iterator = iterator + 1; 
+            iterator = iterator + 1;
         }
     }
 
     result
 }
 
-
 fn make_upper_case(s: &str) -> String {
-    let new_string : String = String::from(s);
+    let new_string: String = String::from(s);
 
     new_string.to_uppercase()
 }
 
 // done
 fn find_short(s: &str) -> u32 {
-    let each_word : Vec<&str> = s.split(' ').collect();
+    let each_word: Vec<&str> = s.split(' ').collect();
 
-    let mut counter_vec : Vec<u32>  = Vec::new();
+    let mut counter_vec: Vec<u32> = Vec::new();
 
-    for i in each_word{
+    for i in each_word {
         counter_vec.push(i.len() as u32)
     }
     counter_vec.sort();
@@ -241,10 +238,29 @@ fn find_short(s: &str) -> u32 {
     counter_vec[0]
 }
 
+fn zero_fuel(distance_to_pump: u32, miles_per_galon: u32, gallons: u32) -> bool {
+    if miles_per_galon * gallons >= distance_to_pump {
+        return true;
+    }
+    false
+}
 
+fn is_square(n: i64) -> bool {
+    if n < 0 {
+        return false;
+    }
+    if n == 0 {
+        return true;
+    }
 
+    for i in 0..n {
 
-
+        if i * i == n {
+            return true;
+        }
+    }
+    false
+}
 
 #[cfg(test)]
 mod tests {
