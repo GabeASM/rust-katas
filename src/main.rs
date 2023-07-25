@@ -220,6 +220,32 @@ fn row_sum_odd_numbers(n: i64) -> i64 {
     result
 }
 
+
+fn make_upper_case(s: &str) -> String {
+    let new_string : String = String::from(s);
+
+    new_string.to_uppercase()
+}
+
+// done
+fn find_short(s: &str) -> u32 {
+    let each_word : Vec<&str> = s.split(' ').collect();
+
+    let mut counter_vec : Vec<u32>  = Vec::new();
+
+    for i in each_word{
+        counter_vec.push(i.len() as u32)
+    }
+    counter_vec.sort();
+
+    counter_vec[0]
+}
+
+
+
+
+
+
 #[cfg(test)]
 mod tests {
     use super::*;
