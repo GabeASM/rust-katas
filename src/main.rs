@@ -1,4 +1,4 @@
-use std::vec;
+use std::{fmt::format, vec};
 
 fn main() {
     let litros: i32 = litres(1787.);
@@ -254,12 +254,103 @@ fn is_square(n: i64) -> bool {
     }
 
     for i in 0..n {
-
         if i * i == n {
             return true;
         }
     }
     false
+}
+
+// done
+fn remove_smallest(numbers: &[u32]) -> Vec<u32> {
+    if numbers.len() == 0 {
+        return numbers.to_vec();
+    }
+
+    let mut new_numbers = numbers.to_vec();
+
+    let mut tuple_numbers: Vec<(u32, usize)> = Vec::new();
+
+    for i in 0..new_numbers.len() {
+        tuple_numbers.push((new_numbers[i], i))
+    }
+
+    tuple_numbers.sort();
+
+    new_numbers.remove(tuple_numbers[0].1);
+
+    new_numbers
+}
+
+// done
+fn fake_bin(s: &str) -> String {
+    let mut new_string = String::from("");
+
+    let char_vec: Vec<char> = s.chars().collect();
+
+    for i in char_vec {
+        let num: u8 = match i.to_digit(10) {
+            Some(digit) => digit as u8,
+            None => 0,
+        };
+        if num < 5 {
+            new_string.push('0')
+        } else {
+            new_string.push('1')
+        }
+    }
+
+    new_string
+}
+
+fn odd_or_even(numbers: Vec<i32>) -> String {
+    let mut num: i32 = 0;
+
+    for i in numbers {
+        num += i;
+    }
+
+    if num % 2 == 0 {
+        return "even".to_string();
+    }
+    "odd".to_string()
+}
+
+// done
+fn solution(word: &str, ending: &str) -> bool {
+    let word_ending = word.ends_with(ending);
+    word_ending
+}
+
+// done
+fn add_binary(a: u64, b: u64) -> String {
+    let sum = a + b;
+
+    let binary = format!("{:b}", sum);
+    return binary;
+}
+
+
+// done
+fn xo(string: &'static str) -> bool {
+    let char_xo: Vec<char> = string.chars().collect();
+    let mut x_count = 0;
+    let mut o_count = 0;
+    for i in char_xo {
+        if i == 'x' || i == 'X' {
+            x_count += 1
+        } else if i == 'o' || i == 'O' {
+            o_count += 1
+        }
+    }
+    if x_count == 0 && o_count == 0 {
+        return true;
+    }
+    if x_count != o_count {
+        return false;
+    }
+
+    true
 }
 
 #[cfg(test)]
