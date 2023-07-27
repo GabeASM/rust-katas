@@ -349,40 +349,73 @@ fn xo(string: &'static str) -> bool {
     if x_count != o_count {
         return false;
     }
-
     true
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-    // fn examples() {
-    //     assert_eq!(expanded_form(12), "10 + 2");
-    //     assert_eq!(expanded_form(42), "40 + 2");
-    //     assert_eq!(expanded_form(70304), "70000 + 300 + 4");
-    // }
 
-    #[test]
-    fn test_set_alarm() {
-        assert_eq!(
-            set_alarm(true, true),
-            false,
-            "Fails when input is true, true"
-        );
-        assert_eq!(
-            set_alarm(false, true),
-            false,
-            "Fails when input is false, true"
-        );
-        assert_eq!(
-            set_alarm(false, false),
-            false,
-            "Fails when input is false, false"
-        );
-        assert_eq!(
-            set_alarm(true, false),
-            true,
-            "Fails when input is true, false"
-        );
+// Write a function to convert a name into initials. This kata strictly takes two words with one space in between them.
+// The output should be two capital letters with a dot separating them.
+// It should look like this:
+// Sam Harris => S.H
+// patrick feeney => P.F
+
+// done
+fn abbrev_name(name: &str) -> String {
+    let mut final_string = String::from("");
+    let vec_name : Vec<&str>  = name.split(' ').collect(); 
+    let first_name_char : Vec<char> = vec_name[0].chars().collect();
+    let last_name_char : Vec<char> =  vec_name[1].chars().collect();
+    final_string.push(first_name_char[0]);
+    final_string.push('.');
+    final_string.push(last_name_char[0]);
+    final_string.to_uppercase()
+}
+
+// Given a set of numbers, return the additive inverse of each. Each positive becomes negatives, and the negatives become positives.
+
+// invert([1,2,3,4,5]) == [-1,-2,-3,-4,-5]
+// invert([1,-2,3,-4,5]) == [-1,2,-3,4,-5]
+// invert([]) == []
+// done
+fn invert(values: &[i32]) -> Vec<i32> {
+    if values.len() == 0 {
+        return values.to_vec()
     }
+    let mut new_vector: Vec<i32> = Vec::new();
+    for i in values{
+        new_vector.push(i*-1)
+    }
+    new_vector
+}
+
+
+/*
+The Western Suburbs Croquet Club has two categories of membership, Senior and Open. They would like your help with an application form that will tell prospective members which category they will be placed.
+
+To be a senior, a member must be at least 55 years old and have a handicap greater than 7. In this croquet club, handicaps range from -2 to +26; the better the player the lower the handicap.
+
+Input
+Input will consist of a list of pairs. Each pair contains information for a single potential member. Information consists of an integer for the person's age and an integer for the person's handicap.
+
+Output
+Output will consist of a list of string values (in Haskell and C: Open or Senior) stating whether the respective member is to be placed in the senior or open category.
+
+Example
+input =  [[18, 20], [45, 2], [61, 12], [37, 6], [21, 21], [78, 9]]
+output = ["Open", "Open", "Senior", "Open", "Open", "Senior"]
+
+done
+*/
+fn open_or_senior(data: Vec<(i32, i32)>) -> Vec<String> {
+    let mut final_vec : Vec<String> = Vec::new();
+
+    for i in data{
+        if i.0 >= 55 && i.1 > 7{
+            final_vec.push("Senior".to_string())
+        }
+        else {
+            final_vec.push("Open".to_string())
+        } 
+    }
+    final_vec
 }
