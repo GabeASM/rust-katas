@@ -419,3 +419,179 @@ fn open_or_senior(data: Vec<(i32, i32)>) -> Vec<String> {
     }
     final_vec
 }
+
+
+/*
+ATM machines allow 4 or 6 digit PIN codes 
+and PIN codes cannot contain anything but exactly 4 digits or exactly 6 digits.
+
+If the function is passed a valid PIN string, return true, else return false.
+
+Examples (Input --> Output)
+"1234"   -->  true
+"12345"  -->  false
+"a234"   -->  false
+
+*/
+// done
+fn validate_pin(pin: &str) -> bool {
+    let vec_char : Vec<char> = pin.chars().collect();
+    for i in vec_char{
+        if !i.is_digit(10){
+            return false
+        }
+    }    
+    pin.len() == 4 || pin.len() == 6
+}
+
+/*
+They are good at taking orders, but they don't know how to capitalize words, or use a space bar!
+
+All the orders they create look something like this:
+
+"milkshakepizzachickenfriescokeburgerpizzasandwichmilkshakepizza"
+
+The kitchen staff are threatening to quit, because of how difficult it is to read the orders.
+
+Their preference is to get the orders as a nice clean string with spaces and capitals like so:
+
+"Burger Fries Chicken Pizza Pizza Pizza Sandwich Milkshake Milkshake Coke"
+
+The kitchen staff expect the items to be in the same order as they appear in the menu.
+
+The menu items are fairly simple, there is no overlap in the names of the items:
+1. Burger
+2. Fries
+3. Chicken
+4. Pizza
+5. Sandwich
+6. Onionrings
+7. Milkshake
+8. Coke
+done
+*/
+fn get_order( input: String ) -> String {
+    let  buger_vec : Vec<&str> = input.matches("burger").collect();
+    let  fries_vec : Vec<&str> = input.matches("fries").collect();
+    let  chicken_vec : Vec<&str> = input.matches("chicken").collect();
+    let  pizza_vec : Vec<&str> = input.matches("pizza").collect();
+    let  sandwich_vec : Vec<&str> = input.matches("sandwich").collect();
+    let  onionrings_vec : Vec<&str> = input.matches("onionrings").collect();
+    let  milkshake_vec : Vec<&str> = input.matches("milkshake").collect();
+    let  coke_vec : Vec<&str> = input.matches("coke").collect();
+
+
+    let mut final_string : String = String::from("");
+
+    fill_order(&mut final_string, buger_vec);
+    fill_order(&mut final_string, fries_vec);
+    fill_order(&mut final_string, chicken_vec);
+    fill_order(&mut final_string, pizza_vec);
+    fill_order(&mut final_string, sandwich_vec);
+    fill_order(&mut final_string, onionrings_vec);
+    fill_order(&mut final_string, milkshake_vec);
+    fill_order(&mut final_string, coke_vec);
+
+    final_string.pop();
+    final_string
+}
+
+fn fill_order(input : &mut String , vector : Vec<&str>){
+    for i in vector{
+        input.push_str(capitalize_first_letter(i).as_str());
+        input.push(' ')
+    }
+}
+fn capitalize_first_letter(s: &str) -> String {
+    s[0..1].to_uppercase() + &s[1..]
+}
+
+
+fn string_to_array(s: &str) -> Vec<String> {
+    let str_vec : Vec<&str> = s.split(' ').collect();
+    let mut final_vec : Vec<String> = Vec::new();
+
+    for i in str_vec{
+        final_vec.push(i.to_string())
+    }
+
+    final_vec
+}
+
+
+fn find_difference(a: &[i32; 3], b: &[i32; 3]) -> i32 {
+    let volume_a = volumes(a);
+    let volume_b = volumes(b);
+    
+    (volume_a - volume_b).abs()
+}
+
+fn volumes ( cuboids : &[i32 ; 3]) -> i32 {
+    let mut  volume : i32 = 1;
+    for i in cuboids {
+        volume = volume * i 
+    }
+    volume
+}
+
+
+fn is_valid_walk(walk: &[char]) -> bool {
+
+    if walk.len() != 10{
+        return false
+    }
+
+    let mut counter_n = 0; 
+    let mut counter_w = 0; 
+    let mut counter_s = 0; 
+    let mut counter_e = 0;
+    
+    for i in walk{
+        match i {
+            'n' => counter_n += 1,
+            'w' => counter_w += 1,
+            's' => counter_s += 1,
+            'e' => counter_e += 1,
+            _ => panic!()
+        }
+    }
+    counter_n == counter_s && counter_e == counter_w    
+}
+
+
+
+
+
+
+
+
+/**
+ * hay que encontrar el producto max y el min de todos los numeros de un array
+ * El array debe tener la suma de los numeros del array debe dar n
+ * Cada debe tener k elementos.  
+ * find_spec_partition(10, 4, 'max') == [3, 3, 2, 2]
+ * find_spec_partition(10, 4, 'min') == [7, 1, 1, 1]
+ */
+
+/**
+ * los numeros van desde el 1 hasta el n-k+1 debido a que debe haber
+ * k slots que deben sumar n
+ * En ese caso, si n = 12 y k = 3
+ * [10 ,1 , 1]
+ * 
+ * si n = 5 y k = 2 
+ * [4 , 1]
+ */
+
+fn find_spec_partition(n: u32, k: u32, com: &str) -> Vec<u32> {
+    let mut final_vec : Vec<u32> = Vec::new();
+
+    let mut vec_numbers : Vec<u32> = Vec::new();
+
+    for i in 1..n-k+1{
+        
+    }
+    final_vec
+}
+
+
