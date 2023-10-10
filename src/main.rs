@@ -5,6 +5,7 @@ fn main() {
 
     println!("{}", litros);
     println!("holaaa" )
+    println!("{}", litros)
 
 }
 
