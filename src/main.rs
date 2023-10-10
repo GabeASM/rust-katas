@@ -3,7 +3,9 @@ use std::{fmt::format, vec};
 fn main() {
     let litros: i32 = litres(1787.);
 
-    println!("{}", litros)
+    println!("{}", litros);
+    println!("holaaa" )
+
 }
 
 /*
